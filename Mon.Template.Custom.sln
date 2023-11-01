@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mon.Template.Custom", "Mon.Template.Custom\Mon.Template.Custom.csproj", "{60FF3F14-EAF5-42E0-9367-2B2474745FE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mon.Template.Custom", "Mon.Template.Custom\Mon.Template.Custom.csproj", "{60FF3F14-EAF5-42E0-9367-2B2474745FE6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
