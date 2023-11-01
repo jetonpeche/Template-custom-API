@@ -1,0 +1,113 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Jetonpeche",
+    "classifications": ["Web", "WebAPI"],
+    "identity": "Mon.Template.Custom",
+    "name": "Template custom API",
+    "shortName": "Template-custom-API",
+    "sourceName": "Mon.Template.Custom",
+    "preferNameDirectory": true,
+    "tags": {
+        "language": "C#",
+        "type": "project"
+    },
+    "symbols": {
+        "Framework":{
+            "type": "parameter",
+            "description": "Version .NET",
+            "datatype": "choice",
+            "choices": [{
+                "choice": "net7.0"
+            }],
+            "defaultValue": "net7.0",
+            "replaces": "{TargetFramework}"
+        },
+
+        "TypeBdd": {
+            "type": "parameter",
+            "description": "Type de la Bdd",
+            "displayName": "Type de la Bdd utilisé",
+            "datatype": "choice",
+            "choices": [
+            {
+                "choice": "SqlServer"
+            },
+            {
+                "choice": "MySql"
+            },
+            {
+                "choice": "Aucune"
+            }],
+            "defaultValue": "SqlServer"   
+        },
+
+        "SourceBdd": {
+            "type": "parameter",
+            "description": "Source de la Bdd (Data source pour SqlServer ou MySql)",
+            "displayName": "JWT",
+            "datatype": "text",
+            "defaultValue": "",
+            "replaces": "{SourceBdd}"
+        },
+
+        "UtiliserJWT": {
+            "type": "parameter",
+            "description": "Utiliser JWT",
+            "displayName": "JWT",
+            "datatype": "bool",
+            "defaultValue": "true"
+        },
+
+        "UtiliserCors": {
+            "type": "parameter",
+            "description": "Utiliser CORS",
+            "displayName": "CORS",
+            "datatype": "bool",
+            "defaultValue": "true"
+        },
+
+        "UtiliserFluentValidator": {
+            "type": "parameter",
+            "description": "Utiliser Fluent validator",
+            "displayName": "Fluent validator",
+            "datatype": "bool",
+            "defaultValue": "true"
+        },
+
+        "UtiliserCache": {
+            "type": "parameter",
+            "description": "Utiliser Cache",
+            "displayName": "Utiliser Cache",
+            "datatype": "bool",
+            "defaultValue": "false"
+        },
+
+        "UtiliserHttpClient": {
+            "type": "parameter",
+            "description": "Utiliser HttpClient",
+            "displayName": "HttpClient",
+            "datatype": "bool",
+            "defaultValue": "false"
+        },
+
+        "BaseAdresseUri": {
+            "type": "parameter",
+            "description": "Base adresse HTTP (exemple => https://google.com)",
+            "displayName": "Base adresse HTTP",
+            "datatype": "text",
+            "defaultValue": "",
+            "replaces": "{BaseAdresseUri}"
+        }
+    }, 
+    "sources": [{
+        "modifiers": [
+        {
+            "condition": "(!UtiliserJWT)",
+            "exclude": ["Mon.Template.Custom/Services/Jwt/**"]
+        },
+        {
+            "condition": "(!UtiliserFluentValidator)",
+            "exclude": ["Mon.Template.Custom/Extensions/ResultsExtension.cs"]
+        }]
+    }]
+}
