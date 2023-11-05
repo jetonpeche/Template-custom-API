@@ -1,9 +1,12 @@
-﻿using FluentValidation.Results;
+﻿#if UtiliserFluentValidator
+using FluentValidation.Results;
+#endif
 
 namespace Mon.Template.Custom.Extensions
 {
     public static class ResultsExtension
     {
+        #if UtiliserFluentValidator
         /// <summary>
         /// Lister les erreurs du validator
         /// </summary>
@@ -18,9 +21,19 @@ namespace Mon.Template.Custom.Extensions
                 Message = x.ErrorMessage
             }));
         }
+        #endif
+
+        /// <summary>
+        /// Erreur 503
+        /// </summary>
+        /// <returns>Liste des erreurs de validation</returns>
+        public static IResult ErreurConnexionBdd(this IResultExtensions ext)
+        {
+            return Results.Problem(detail: "Impossible de se connecter à la base de données", statusCode: (int)HttpStatusCode.ServiceUnavailable);
+        }
     }
 }
-
+#if UtiliserFluentValidator
 namespace Mon.Template.Custom.ErreursValidation
 {
     public sealed record ErreurValidation
@@ -29,5 +42,5 @@ namespace Mon.Template.Custom.ErreursValidation
         public string Message { get; init; } = null!;
     }
 }
-
+#endif
 

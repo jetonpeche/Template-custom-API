@@ -15,6 +15,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Condition="'$(UtiliserMail)' == 'true'" Include="MailKit" Version="4.2.0" />
+		<PackageReference Condition="'$(UtiliserQrCode)' == 'true'" Include="QRCoder" Version="1.4.3" />
+		<PackageReference Condition="'$(Utiliser2fa)' == 'true'" Include="TwoFactorAuth.Net" Version="1.4.0" />
 		<PackageReference Condition="'$(UtiliserJWT)' == 'true'" Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.13" />
 		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.13" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
@@ -45,6 +48,8 @@
 	<ItemGroup>
 		<Folder Include="Routes\" />
 		<Folder Include="Services\" />
+		<Folder Include="ModelsImport\" />
+		<Folder Include="ModelsExport\" />
 		<Folder Condition="'$(UtiliserJWT)' == 'true'" Include="Rsa\" />
 	</ItemGroup>
 

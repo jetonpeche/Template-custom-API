@@ -27,7 +27,7 @@ if (!File.Exists(cheminCleRsa))
     File.WriteAllBytes(cheminCleRsa, clePriver);
 }
 
-// recupere la clé
+// recupere la clï¿½
 rsa.ImportRSAPrivateKey(File.ReadAllBytes(cheminCleRsa), out _);
 
 // permet de savoir si on a le bon role pour pouvoir y acceder*
@@ -44,13 +44,13 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                         ValidateAudience = false
                     };
 
-                    // permet de valider le chiffrement du JWT en definissant la cle utilisé
+                    // permet de valider le chiffrement du JWT en definissant la cle utilisï¿½
                     option.Configuration = new OpenIdConnectConfiguration
                     {
                         SigningKeys = { new RsaSecurityKey(rsa) }
                     };
 
-                    // pour avoir les clé valeur normal comme dans les claims
+                    // pour avoir les clï¿½ valeur normal comme dans les claims
                     // par defaut ajouter des Uri pour certain truc comme le "sub"
                     option.MapInboundClaims = false;
                 });
@@ -131,6 +131,21 @@ builder.Services.AddCors(x => x.AddDefaultPolicy(y => y.AllowAnyOrigin().AllowAn
 
 #if UtiliserJWT
 builder.Services.AddSingleton<IJwtService>(new JwtService(rsa, ""));
+#endif
+#if UtiliserMail
+builder.Services.AddSingleton<IMailService>(new MailService(new back.Options.MailOptions
+{
+    Expediteur = "",
+    Mdp = "",
+    NomSmtp = "smtp.gmail.com",
+    NumeroPortSmtp = 587
+}));
+#endif
+#if Utiliser2fa
+builder.Services.AddTransient<IDeuxFaService, DeuxFaService>();
+#endif
+#if UtiliserQrCode
+builder.Services.AddTransient<IQrCodeService, QrCodeService>();
 #endif
 
 var app = builder.Build();

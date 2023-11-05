@@ -44,7 +44,7 @@
         "SourceBdd": {
             "type": "parameter",
             "description": "Source de la Bdd (Data source pour SqlServer ou MySql)",
-            "displayName": "JWT",
+            "displayName": "connexion string bdd",
             "datatype": "text",
             "defaultValue": "",
             "replaces": "{SourceBdd}"
@@ -97,6 +97,30 @@
             "datatype": "text",
             "defaultValue": "",
             "replaces": "{BaseAdresseUri}"
+        },
+
+        "Utiliser2fa": {
+            "type": "parameter",
+            "description": "Utiliser 2fa",
+            "displayName": "2fa",
+            "datatype": "bool",
+            "defaultValue": "false"
+        },
+
+        "UtiliserMail": {
+            "type": "parameter",
+            "description": "Utiliser mail",
+            "displayName": "Mail",
+            "datatype": "bool",
+            "defaultValue": "false"
+        },
+
+        "UtiliserQrCode": {
+            "type": "parameter",
+            "description": "Utiliser QR code",
+            "displayName": "QR code",
+            "datatype": "bool",
+            "defaultValue": "false"
         }
     }, 
     "sources": [{
@@ -106,8 +130,16 @@
             "exclude": ["Mon.Template.Custom/Services/Jwt/**"]
         },
         {
-            "condition": "(!UtiliserFluentValidator)",
-            "exclude": ["Mon.Template.Custom/Extensions/ResultsExtension.cs"]
+            "condition": "(!Utiliser2fa)",
+            "exclude": ["Mon.Template.Custom/Services/DeuxFa/**"]
+        },
+        {
+            "condition": "(!UtiliserMail)",
+            "exclude": ["Mon.Template.Custom/Services/Mail/**", "Mon.Template.Custom/Options/**"]
+        },
+        {
+            "condition": "(!UtiliserQrCode)",
+            "exclude": ["Mon.Template.Custom/Services/QrCode/**"]
         }]
     }]
 }

@@ -1,9 +1,10 @@
-﻿using Microsoft.IdentityModel.JsonWebTokens;
+﻿using back.Enums;
+using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Security.Cryptography;
 
-namespace Mon.Template.Custom.Services.Jwt;
+namespace back.Services.Jwts;
 
 public sealed class JwtService : IJwtService
 {
@@ -34,6 +35,49 @@ public sealed class JwtService : IJwtService
             // en général mettre URL
             Issuer = Issuer,
 
+            SigningCredentials = new SigningCredentials(cle, SecurityAlgorithms.RsaSha256)
+        });
+
+        return jwt;
+    }
+
+    public string GenererRefreshToken()
+    {
+        var gestionnaireJwt = new JsonWebTokenHandler();
+
+        // permet de signer le JWT
+        var cle = new RsaSecurityKey(Rsa);
+
+        // creation du Refresh token
+        var jwt = gestionnaireJwt.CreateToken(new SecurityTokenDescriptor
+        {
+            Issuer = Issuer,
+            Expires = DateTime.Now.AddDays(2),
+            SigningCredentials = new SigningCredentials(cle, SecurityAlgorithms.RsaSha256)
+        });
+
+        return jwt;
+    }
+
+    public string GenererPour2fa(string _mail)
+    {
+        var gestionnaireJwt = new JsonWebTokenHandler();
+
+        // permet de signer le JWT
+        var cle = new RsaSecurityKey(Rsa);
+
+        // creation du JWT
+        // par defaut dure 1 heure
+        var jwt = gestionnaireJwt.CreateToken(new SecurityTokenDescriptor
+        {
+            Subject = new ClaimsIdentity(new[] 
+            {
+                new Claim(ClaimTypes.Role, "jwt2fa"),
+                new Claim("mail", _mail)
+            }),
+
+            Issuer = Issuer,
+            Expires = DateTime.Now.AddMinutes(10),
             SigningCredentials = new SigningCredentials(cle, SecurityAlgorithms.RsaSha256)
         });
 
