@@ -1,6 +1,9 @@
-# Template-custom-API
+# Template custom API
 
 Template custom pour minimal API .NET 8
+Génération via le CLI dotnet `Template-custom-API`
+
+## Installation
 
 ## Template minimal API peut intégrer en services:
 - Generateur de QR code
