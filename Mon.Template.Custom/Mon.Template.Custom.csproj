@@ -50,6 +50,7 @@
 		<Folder Include="Services\" />
 		<Folder Include="ModelsImport\" />
 		<Folder Include="ModelsExport\" />
+		<Folder Condition="'$(UtiliserCache)' == 'true' And '$(UtiliserJWT)' == 'true'" Include="PolicyOutputCache\" />
 		<Folder Condition="'$(UtiliserJWT)' == 'true'" Include="Rsa\" />
 	</ItemGroup>
 
