@@ -4,8 +4,16 @@ Template custom pour minimal API .NET 8
 Génération via le CLI dotnet `Template-custom-API`
 
 ## Installation
+1. Ouvrir une invite de commande (cmd)
+2. Se rendre dans le projet jusqu'au `.sln` (cd)
+3. Exécuter la commande `dotnet new install .`
 
-## Template minimal API peut intégrer en services:
+## Désinstallation
+1. Ouvrir une invite de commande (cmd)
+2. Se rendre dans le projet jusqu'au `.sln` (cd)
+3. Exécuter la commande `dotnet new uninstall .`
+
+## Options Services:
 - Generateur de QR code
 - 2fa
 - Generateur de Jwt
