@@ -1,7 +1,8 @@
 # Template custom API
 
-Template custom pour minimal API .NET 8
-Génération via le CLI dotnet `Template-custom-API`
+Template custom pour minimal API .NET 8  
+Génération via le CLI dotnet `Template-custom-API`  
+`dotnet new Template-custom-API --help`
 
 ## Installation
 1. Ouvrir une invite de commande (cmd)
