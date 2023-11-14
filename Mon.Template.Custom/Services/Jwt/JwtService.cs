@@ -1,5 +1,4 @@
-﻿using back.Enums;
-using Microsoft.IdentityModel.JsonWebTokens;
+﻿using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -56,7 +55,7 @@ public sealed class JwtService : IJwtService
             SigningCredentials = new SigningCredentials(cle, SecurityAlgorithms.RsaSha256)
         });
 
-        return jwt;
+        return jwt!;
     }
 
     public string GenererPour2fa(string _mail)
@@ -81,6 +80,6 @@ public sealed class JwtService : IJwtService
             SigningCredentials = new SigningCredentials(cle, SecurityAlgorithms.RsaSha256)
         });
 
-        return jwt;
+        return jwt!;
     }
 }

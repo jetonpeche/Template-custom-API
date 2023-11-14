@@ -1,8 +1,6 @@
 using MailKit.Net.Smtp;
 using MimeKit;
-using Outil.Options;
 using System.Text.RegularExpressions;
-using static QuestPDF.Helpers.Colors;
 
 namespace back.Services.Mail;
 

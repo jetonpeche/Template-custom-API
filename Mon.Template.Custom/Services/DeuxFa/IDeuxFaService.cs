@@ -1,5 +1,3 @@
-using back.ModelsExport.DeuxFa;
-
 namespace back.Services.DeuxFa;
 
 public interface IDeuxFaService
@@ -10,7 +8,7 @@ public interface IDeuxFaService
     /// <param name="_titre">Titre du 2fa dans l'app (google auth, MS auth ...)</param>
     /// <param name="_labelle">Sous titre du 2fa dans l'app (google auth, MS auth ...)</param>
     /// <returns>2fa en base64 et cleSecret</returns>
-    public DeuxfaExport Generer(string _titre, string _labelle);
+    public Reponse2fa Generer(string _titre, string _labelle);
 
     /// <summary>
     /// Verifie la validité du code pour le 2fa

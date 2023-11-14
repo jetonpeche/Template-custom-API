@@ -5,7 +5,7 @@ namespace back.Services.DeuxFa;
 
 public sealed class DeuxFaService : IDeuxFaService
 {
-    public DeuxfaExport Generer(string _titre, string _labelle)
+    public Reponse2fa Generer(string _titre, string _labelle)
     {
         if (string.IsNullOrWhiteSpace(_titre))
             _titre = "titre app";
@@ -21,7 +21,7 @@ public sealed class DeuxFaService : IDeuxFaService
         string cleSecret = tfa.CreateSecret(160);
         string url2fa = tfa.GetQrText(_labelle, cleSecret);
 
-        DeuxfaExport reponse = new()
+        Reponse2fa reponse = new()
         {
             CleSecret = cleSecret,
             Url2fa = url2fa
