@@ -76,7 +76,7 @@ public sealed class JwtService : IJwtService
             }),
 
             Issuer = Issuer,
-            Expires = DateTime.Now.AddMinutes(10),
+            Expires = DateTime.Now.AddMinutes(2),
             SigningCredentials = new SigningCredentials(cle, SecurityAlgorithms.RsaSha256)
         });
 
