@@ -1,4 +1,4 @@
-namespace back.Services.QrCodes;
+namespace Services.QrCodes;
 
 public interface IQrCodeService
 {

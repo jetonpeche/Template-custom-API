@@ -1,4 +1,4 @@
-﻿namespace back.Services.DeuxFa;
+﻿namespace Services.DeuxFa;
 
 public sealed record Reponse2fa
 {

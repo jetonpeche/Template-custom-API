@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Mon.Template.Custom.Services.Jwt;
+using Services.Jwts;
 using System.Security.Cryptography;
 #endif
 #if UtiliserFluentValidator
@@ -116,8 +116,7 @@ builder.Services.ConfigureHttpJsonOptions(x =>
 // config cache de sortie
 builder.Services.AddOutputCache(x =>
 {
-    // cache par defaut expire au bout d'une heure
-    x.AddBasePolicy(y => y.Expire(TimeSpan.FromHours(1)));
+    
 });
 #endif
 

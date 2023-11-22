@@ -1,4 +1,4 @@
-namespace back.Services.DeuxFa;
+namespace Services.DeuxFa;
 
 public interface IDeuxFaService
 {

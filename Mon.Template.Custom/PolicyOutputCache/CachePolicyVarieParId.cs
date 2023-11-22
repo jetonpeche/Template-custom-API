@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.OutputCaching;
 
-namespace Mon.Template.Custom.PolicyOutputCache;
+namespace PolicyOutputCache;
 
 public sealed class CachePolicyVarieParId: IOutputCachePolicy
 {

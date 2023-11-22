@@ -1,7 +1,6 @@
 ﻿#if UtiliserFluentValidator
 using FluentValidation.Results;
 #endif
-
 using System.Text.Json.Serialization;
 
 namespace Mon.Template.Custom.Extensions
@@ -17,7 +16,7 @@ namespace Mon.Template.Custom.Extensions
         /// <returns>Liste des erreurs de validation</returns>
         public static IResult ErreurValidator(this IResultExtensions ext, List<ValidationFailure> _ListeErreur)
         {
-            return Results.UnprocessableEntity(_ListeErreur.Select(x => new ErreursValidation.ErreurValidation
+            return Results.BadRequest(_ListeErreur.Select(x => new ErreurValidation
             {
                 Parametre = x.PropertyName,
                 Message = x.ErrorMessage
@@ -48,13 +47,9 @@ namespace Mon.Template.Custom.Extensions
     }
 }
 #if UtiliserFluentValidator
-namespace Mon.Template.Custom.ErreursValidation
+public sealed record ErreurValidation
 {
-    public sealed record ErreurValidation
-    {
-        public string Parametre { get; init; } = null!;
-        public string Message { get; init; } = null!;
-    }
+    public required string Parametre { get; init; }
+    public required string Message { get; init; }
 }
-#endif
 

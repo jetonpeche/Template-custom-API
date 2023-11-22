@@ -1,6 +1,6 @@
 using QRCoder;
 
-namespace back.Services.QrCodes;
+namespace Services.QrCodes;
 
 public sealed class QrCodeService : IQrCodeService
 {

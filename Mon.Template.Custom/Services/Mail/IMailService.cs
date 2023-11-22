@@ -1,4 +1,4 @@
-namespace back.Services.Mail;
+namespace Services.Mail;
 
 public interface IMailService
 {

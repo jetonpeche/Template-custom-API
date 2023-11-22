@@ -2,7 +2,7 @@ using MailKit.Net.Smtp;
 using MimeKit;
 using System.Text.RegularExpressions;
 
-namespace back.Services.Mail;
+namespace Services.Mail;
 
 public sealed class MailService
 {

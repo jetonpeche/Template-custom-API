@@ -1,7 +1,6 @@
-﻿using back.Enums;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 
-namespace back.Services.Jwts;
+namespace Services.Jwts;
 
 public interface IJwtService
 {

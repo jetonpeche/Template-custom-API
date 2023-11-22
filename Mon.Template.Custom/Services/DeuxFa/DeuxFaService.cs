@@ -1,7 +1,7 @@
 using back.ModelsExport.DeuxFa;
 using TwoFactorAuthNet;
 
-namespace back.Services.DeuxFa;
+namespace Services.DeuxFa;
 
 public sealed class DeuxFaService : IDeuxFaService
 {
