@@ -23,11 +23,10 @@ public sealed class MdpService: IMdpService
         byte[] octetsAleatoires = new byte[_longueurMdp];
         octetsAleatoires = RandomNumberGenerator.GetBytes(_longueurMdp);
 
-        Random rand = new();
         int nbCaracteresSpeciaux = 0;
 
         if (_contientCaractereSpeciaux)
-            nbCaracteresSpeciaux = _nbCaractereSpeciaux > 0 ? _nbCaractereSpeciaux : rand.Next(1, _longueurMdp + 1);
+            nbCaracteresSpeciaux = _nbCaractereSpeciaux > 0 ? _nbCaractereSpeciaux : RandomNumberGenerator.GetInt32(1, _longueurMdp + 1);
 
         for (int i = 0; i < _longueurMdp; i++)
         {
@@ -46,13 +45,7 @@ public sealed class MdpService: IMdpService
         }
 
         // Mélangez le mot de passe pour plus de sécurité
-        for (int i = motDePasse.Length - 1; i > 0; i--)
-        {
-            int j = rand.Next(0, i + 1);
-            char temp = motDePasse[i];
-            motDePasse[i] = motDePasse[j];
-            motDePasse[j] = temp;
-        }
+        RandomNumberGenerator.Shuffle<char>(motDePasse);
 
         return new string(motDePasse);
     }
