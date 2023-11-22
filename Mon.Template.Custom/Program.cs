@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Services.Jwts;
+using Services.Mdp;
 using System.Security.Cryptography;
 #endif
 #if UtiliserFluentValidator
@@ -128,6 +129,7 @@ builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 builder.Services.AddCors(x => x.AddDefaultPolicy(y => y.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
 #endif
 
+builder.Services.AddSingleton<IMdpService, MdpService>();
 #if UtiliserJWT
 builder.Services.AddSingleton<IJwtService>(new JwtService(rsa, ""));
 #endif
