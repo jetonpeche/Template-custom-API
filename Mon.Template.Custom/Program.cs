@@ -31,7 +31,7 @@ if (!File.Exists(cheminCleRsa))
 // recupere la cl�
 rsa.ImportRSAPrivateKey(File.ReadAllBytes(cheminCleRsa), out _);
 
-// permet de savoir si on a le bon role pour pouvoir y acceder*
+// permet de savoir si on a le bon role pour pouvoir y acceder
 // .AddPolicy("nom", policy => policy.RequireRole("admin"));
 // nom => a donner dans .RequireAuthorization("nom")
 builder.Services.AddAuthorizationBuilder();
@@ -45,7 +45,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                         ValidateAudience = false
                     };
 
-                    // permet de valider le chiffrement du JWT en definissant la cle utilis�
+                    // permet de valider le chiffrement du JWT en definissant la clé utilisée
                     option.Configuration = new OpenIdConnectConfiguration
                     {
                         SigningKeys = { new RsaSecurityKey(rsa) }
@@ -124,11 +124,9 @@ builder.Services.AddOutputCache(x =>
 #if UtiliserFluentValidator
 builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 #endif
-
 #if UtiliserCors
 builder.Services.AddCors(x => x.AddDefaultPolicy(y => y.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
 #endif
-
 builder.Services.AddSingleton<IMdpService, MdpService>();
 #if UtiliserJWT
 builder.Services.AddSingleton<IJwtService>(new JwtService(rsa, ""));
