@@ -4,13 +4,15 @@ namespace PolicyOutputCache;
 
 public sealed class CachePolicyVarieParId: IOutputCachePolicy
 {
-    public string NomParam { get; init; }
-    public string PrefixTag { get; init; }
+    public string NomParam { get; private init; }
+    public string PrefixTag { get; private init; }
+    public TimeSpan DurerCache { get; private init; }
 
-    public CachePolicyVarieParId(string _nomParam, string _prefixTag)
+    public CachePolicyVarieParId(string _prefixTag, string _nomParam, TimeSpan _durerCache)
     {
         NomParam = _nomParam;
         PrefixTag = _prefixTag;
+        DurerCache = _durerCache;
     }
 
     public ValueTask CacheRequestAsync(OutputCacheContext _context, CancellationToken cancellationToken)
@@ -23,7 +25,7 @@ public sealed class CachePolicyVarieParId: IOutputCachePolicy
         bool estActiver = ActiverOutputCache(_context);
 
         // ajoute le nom du tag pour le cache
-        _context.Tags.Add($"{PrefixTag}_{valeurParam!}");
+        _context.Tags.Add($"{PrefixTag}{valeurParam!}");
 
         _context.EnableOutputCaching = true;
         _context.AllowCacheLookup = estActiver;
@@ -31,7 +33,7 @@ public sealed class CachePolicyVarieParId: IOutputCachePolicy
         _context.AllowLocking = true;
 
         // durée de vie du cache
-        _context.ResponseExpirationTimeSpan = TimeSpan.FromMinutes(20);
+        _context.ResponseExpirationTimeSpan = DurerCache;
 
         return ValueTask.CompletedTask;
     }

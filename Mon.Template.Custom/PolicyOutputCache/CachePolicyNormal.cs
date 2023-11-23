@@ -4,9 +4,14 @@ namespace PolicyOutputCache;
 
 public sealed class CachePolicyNormal: IOutputCachePolicy
 {
-    public string NomTag { get; init; }
+    public string NomTag { get; private init; }
+    public TimeSpan DurerCache { get; private init; }
 
-    public CachePolicyNormal(string _nomTag) => NomTag = _nomTag;
+    public CachePolicyNormal(string _nomTag, TimeSpan _durerCache)
+    { 
+        NomTag = _nomTag; 
+        DurerCache = _durerCache;
+    }
 
     public ValueTask CacheRequestAsync(OutputCacheContext context, CancellationToken cancellationToken)
     {
@@ -20,7 +25,7 @@ public sealed class CachePolicyNormal: IOutputCachePolicy
         context.AllowLocking = true;
 
         // durée de vie du cache
-        context.ResponseExpirationTimeSpan = TimeSpan.FromMinutes(20);
+        context.ResponseExpirationTimeSpan = DurerCache;
 
         return ValueTask.CompletedTask;
     }
