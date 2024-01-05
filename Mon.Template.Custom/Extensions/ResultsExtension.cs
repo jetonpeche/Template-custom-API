@@ -52,4 +52,4 @@ public sealed record ErreurValidation
     public required string Parametre { get; init; }
     public required string Message { get; init; }
 }
-
+#endif
