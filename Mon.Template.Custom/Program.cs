@@ -3,9 +3,12 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Services.Jwts;
-using Services.Mdp;
 using System.Security.Cryptography;
+using Services.Jwts;
+#endif
+using Services.Mdp;
+#if UtiliserMail
+using Services.Mail; 
 #endif
 #if UtiliserFluentValidator
 using FluentValidation;
@@ -127,12 +130,12 @@ builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 #if UtiliserCors
 builder.Services.AddCors(x => x.AddDefaultPolicy(y => y.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
 #endif
-builder.Services.AddSingleton<IMdpService, MdpService>();
 #if UtiliserJWT
 builder.Services.AddSingleton<IJwtService>(new JwtService(rsa, ""));
 #endif
+builder.Services.AddSingleton<IMdpService, MdpService>();
 #if UtiliserMail
-builder.Services.AddSingleton<IMailService>(new MailService(new back.Options.MailOptions
+builder.Services.AddSingleton<IMailService>(new MailService(new MailOptions
 {
     Expediteur = "",
     Mdp = "",

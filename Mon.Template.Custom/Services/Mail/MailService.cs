@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace Services.Mail;
 
-public sealed class MailService
+public sealed class MailService: IMailService
 {
     private MailOptions mailOptions;
     public MailOptions MailOptions 
