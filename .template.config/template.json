@@ -126,6 +126,10 @@
     "sources": [{
         "modifiers": [
         {
+            "condition": "(!UtiliserFluentValidator)",
+            "exclude": ["Mon.Template.Custom/Extensions/ValidatorExtension.cs"]
+        },
+        {
             "condition": "(!UtiliserJWT)",
             "exclude": ["Mon.Template.Custom/Services/Jwt/**"]
         },

@@ -9,30 +9,30 @@
 
 	<ItemGroup Condition="'$(UtiliserFluentValidator)' == 'true'">
 		<PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
-		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.0" />
+		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.10.0" />
 
 		<Folder Include="Validators\" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Condition="'$(UtiliserMail)' == 'true'" Include="MailKit" Version="4.3.0" />
-		<PackageReference Condition="'$(UtiliserQrCode)' == 'true'" Include="QRCoder" Version="1.4.3" />
+		<PackageReference Condition="'$(UtiliserMail)' == 'true'" Include="MailKit" Version="4.8.0" />
+		<PackageReference Condition="'$(UtiliserQrCode)' == 'true'" Include="QRCoder" Version="1.6.0" />
 		<PackageReference Condition="'$(Utiliser2fa)' == 'true'" Include="TwoFactorAuth.Net" Version="1.4.0" />
-		<PackageReference Condition="'$(UtiliserJWT)' == 'true'" Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.2" />
-		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.2" />
-		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+		<PackageReference Condition="'$(UtiliserJWT)' == 'true'" Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.10" />
+		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.10" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
   </ItemGroup>
 
 	<!-- SqlServer / MySql -->
 	<ItemGroup Condition="'$(TypeBdd)' == 'MySql' Or '$(TypeBdd)' == 'MySql'">
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.2" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.2">
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.10" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.10">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 
-		<PackageReference Condition="'$(TypeBdd)' == 'MySql'" Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.0" />
-		<PackageReference Condition="'$(TypeBdd)' == 'SqlServer'" Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.2" />
+		<PackageReference Condition="'$(TypeBdd)' == 'MySql'" Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.2" />
+		<PackageReference Condition="'$(TypeBdd)' == 'SqlServer'" Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.10" />
 	</ItemGroup>
 
 	<ItemGroup>
