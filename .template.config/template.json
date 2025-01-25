@@ -144,6 +144,12 @@
         {
             "condition": "(!UtiliserQrCode)",
             "exclude": ["Mon.Template.Custom/Services/QrCode/**"]
+        },
+        {
+            "condition": "TypeBdd == 'Aucune'",
+            "exclude": [
+                "Mon.Template.Custom/Extensions/SetPropertyBuilder.cs"
+            ]
         }]
     }]
 }
