@@ -40,7 +40,7 @@ public static class ResultsExtension
     /// <param name="_retour">donnée à retourner</param>
     /// <param name="_retourContext">Le context du param '_retour'</param>
     /// <returns>Renvoie les donnée en code HTTP 200 OK</returns>
-    public static IResult OK(this IResultExtensions ext, object? _retour, JsonSerializerContext _retourContext)
+    public static IResult Ok(this IResultExtensions ext, object? _retour, JsonSerializerContext _retourContext)
     {
         return Results.Json(_retour, _retourContext, statusCode: StatusCodes.Status200OK);
     }
