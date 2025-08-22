@@ -1,4 +1,4 @@
-﻿namespace Api.Extensions;
+﻿namespace Mon.Template.Custom.Extensions;
 
 public static class WebApplicationExtension
 {

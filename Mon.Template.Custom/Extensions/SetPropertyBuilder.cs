@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Query;
 using System.Linq.Expressions;
 
-namespace Api.Extensions;
+namespace Mon.Template.Custom.Extensions;
 
 public sealed class SetPropertyBuilder<TSource>
 {

@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 
-namespace Api.Extensions;
+namespace Mon.Template.Custom.Extensions;
 
 public static class HttpContextExtension
 {

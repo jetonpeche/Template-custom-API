@@ -1,7 +1,7 @@
 #if UtiliserJWT
 using System.Security.Cryptography;
 #endif
-using Api.Extensions;
+using Mon.Template.Custom.Extensions;
 #if UtiliserMail
 using Services.Mail; 
 #endif
@@ -15,6 +15,9 @@ var builder = WebApplication.CreateBuilder(args);
 string cheminCleRsa = builder.Configuration.GetValue<string>("cheminCleRsa")!;
 
 RSA rsa = RSA.Create();
+
+if(!Directory.Exists("Rsa"))
+    Directory.CreateDirectory("Rsa");
 
 // creer la cle une seule fois
 if (!File.Exists(cheminCleRsa))
@@ -47,9 +50,7 @@ builder.Services.AjouterOutputCache();
 #if UtiliserFluentValidator
 builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 #endif
-#if UtiliserCors
 builder.Services.AddCors(x => x.AddDefaultPolicy(y => y.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
-#endif
 #if UtiliserMail
 builder.Services.AddSingleton<IMailService>(new MailService(new MailOptions
 {
@@ -67,9 +68,7 @@ builder.Services.AjouterService();
 
 var app = builder.Build();
 
-#if UtiliserCors
 app.UseCors();
-#endif
 #if UtiliserJWT
 // l'ordre est important
 app.UseAuthentication();

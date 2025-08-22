@@ -8,17 +8,25 @@ public sealed class MdpService: IMdpService
     private readonly int longeurCleHash = 32;
     private readonly int nbIteration = 20_000;
     private readonly char delimiteur = '$';
+    private char[] CARACTERE_ALPHANUMERIQUE = [
+        'A','B','C','D','E','F','G','H','I','J','K','L','M','N',
+        'O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b',
+        'c','d','e','f','g','h','i','j','k','l','m','n','o','p',
+        'q','r','s','t','u','v','w','x','y','z','0','1','2','3',
+        '4','5','6','7','8','9'
+    ];
+    private char[] CARACTERE_SPECIAUX = [
+        '@','"','!','@','#','$','£','%','^','&','*',
+        '\\','(',')','_','-','+','=','[','{',']','}',
+        ';',':','<','>','|','.','/','?','§'
+    ];
 
     public string Generer(ushort _longueurMdp, bool _contientCaractereSpeciaux = true, int _nbCaractereSpeciaux = 0)
     {
-        const string CARACTERE_SPECIAUX = @"!@#$£%^&*\()_-+=[{]};:<>|./?§";
-        const string CARACTERE_ALPHANUMERIQUE = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        Random.Shared.Shuffle(CARACTERE_ALPHANUMERIQUE);
+        Random.Shared.Shuffle(CARACTERE_SPECIAUX);
 
         char[] motDePasse = new char[_longueurMdp];
-
-        if (_longueurMdp < 8)
-            return "La longueur du mot de passe doit être supérieur à 8 caractères.";
-
 
         byte[] octetsAleatoires = new byte[_longueurMdp];
         octetsAleatoires = RandomNumberGenerator.GetBytes(_longueurMdp);

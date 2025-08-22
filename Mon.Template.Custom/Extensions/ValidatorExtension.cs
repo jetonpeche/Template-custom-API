@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using System.Text.RegularExpressions;
 
-namespace Api.Extensions;
+namespace Mon.Template.Custom.Extensions;
 
 public static class ValidatorExtension
 {

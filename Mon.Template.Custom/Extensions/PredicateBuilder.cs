@@ -1,4 +1,4 @@
-﻿namespace certyAPI.Extensions;
+﻿namespace Mon.Template.Custom.Extensions;
 
 using System;
 using System.Linq;

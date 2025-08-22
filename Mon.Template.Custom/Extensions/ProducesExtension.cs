@@ -31,13 +31,21 @@ public static class ProducesExtension
     /// </summary>
     public static RouteHandlerBuilder ProducesBadRequest(this RouteHandlerBuilder builder)
         => builder.Produces(StatusCodes.Status400BadRequest);
-    #if UtiliserFluentValidator
+
+    /// <summary>
+    /// Renvoie un code erreur 429 trop de requete
+    /// </summary>
+    /// <param name="builder"></param>
+    /// <returns></returns>
+    public static RouteHandlerBuilder ProducesToManyRequests(this RouteHandlerBuilder builder)
+        => builder.Produces(StatusCodes.Status429TooManyRequests);
+#if UtiliserFluentValidator
     /// <summary>
     /// Renvoie un code erreur 404 avec les erreurs de validations
     /// </summary>
     public static RouteHandlerBuilder ProducesBadRequestErreurValidation(this RouteHandlerBuilder builder)
         => builder.Produces<ErreurValidation>(StatusCodes.Status400BadRequest);
-    #endif
+#endif
     /// <summary>
     /// Renvoie un code erreur 503. Peut être mis sur tout les endpoints d'une route
     /// </summary>
@@ -45,6 +53,17 @@ public static class ProducesExtension
     {
         return builder.WithMetadata(new ProducesResponseTypeMetadata(
                 StatusCodes.Status503ServiceUnavailable,
+                typeof(string))
+            );
+    }
+
+    /// <summary>
+    /// Renvoie un code erreur 429. Peut être mis sur tout les endpoints d'une route
+    /// </summary>
+    public static IEndpointConventionBuilder ProducesToManyRequests(this RouteGroupBuilder builder)
+    {
+        return builder.WithMetadata(new ProducesResponseTypeMetadata(
+                StatusCodes.Status429TooManyRequests,
                 typeof(string))
             );
     }

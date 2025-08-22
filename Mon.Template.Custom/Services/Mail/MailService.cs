@@ -7,30 +7,13 @@ namespace Services.Mail;
 public sealed class MailService: IMailService
 {
     private MailOptions mailOptions;
-    public MailOptions MailOptions 
-    {
-        private get
-        {
-            if (mailOptions is null)
-                throw new ArgumentNullException($"'{nameof(MailOptions)}' ne peut pas être null");
-
-            return mailOptions;
-        }
-        init
-        {
-            if(value is null)
-                throw new ArgumentNullException($"'{nameof(MailOptions)}' ne peut pas être null");
-
-            mailOptions = value;
-        }
-    }
 
     public MailService(MailOptions _mailOptions)
     {
         if(_mailOptions is null)
             throw new ArgumentNullException($"'{nameof(MailOptions)}' ne peut pas être null");
 
-        MailOptions = _mailOptions;
+        mailOptions = _mailOptions;
     }
 
     public async Task<bool> EnvoyerAsync(IReadOnlyList<string> _listeDestinataire, string _sujet, string _message, bool _estFormatHtml)
@@ -83,7 +66,7 @@ public sealed class MailService: IMailService
 
     private void ParametrerHeader(MimeMessage _mimeMsg, IReadOnlyList<string> _listeDestinataire, IReadOnlyList<string>? _listeCopie, IReadOnlyList<string>? _listeCopieCacher)
     {
-        _mimeMsg.From.Add(new MailboxAddress("Expediteur", MailOptions.Expediteur));
+        _mimeMsg.From.Add(new MailboxAddress("Expediteur", mailOptions.Expediteur));
 
         _listeDestinataire = FiltrerFauxMail(_listeDestinataire);
 
@@ -116,8 +99,8 @@ public sealed class MailService: IMailService
                 CheckCertificateRevocation = false
             };
 
-            await smtp.ConnectAsync(MailOptions.NomSmtp, MailOptions.NumeroPortSmtp);
-            await smtp.AuthenticateAsync(MailOptions.Expediteur, MailOptions.Mdp);
+            await smtp.ConnectAsync(mailOptions.NomSmtp, mailOptions.NumeroPortSmtp);
+            await smtp.AuthenticateAsync(mailOptions.Expediteur, mailOptions.Mdp);
             await smtp.SendAsync(_mimeMsg);
             await smtp.DisconnectAsync(true);
 

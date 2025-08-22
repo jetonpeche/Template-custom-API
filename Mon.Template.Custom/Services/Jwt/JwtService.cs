@@ -69,11 +69,10 @@ public sealed class JwtService : IJwtService
         // par defaut dure 1 heure
         var jwt = gestionnaireJwt.CreateToken(new SecurityTokenDescriptor
         {
-            Subject = new ClaimsIdentity(new[] 
-            {
+            Subject = new ClaimsIdentity([ 
                 new Claim(ClaimTypes.Role, "jwt2fa"),
                 new Claim("mail", _mail)
-            }),
+            ]),
 
             Issuer = Issuer,
             Expires = DateTime.Now.AddMinutes(2),

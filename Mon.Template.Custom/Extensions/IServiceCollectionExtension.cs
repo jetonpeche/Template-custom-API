@@ -15,7 +15,7 @@ using Services.QrCodes;
 using System.Reflection;
 using System.Security.Cryptography;
 
-namespace Api.Extensions;
+namespace Mon.Template.Custom.Extensions;
 
 public static class IServiceCollectionExtension
 {
