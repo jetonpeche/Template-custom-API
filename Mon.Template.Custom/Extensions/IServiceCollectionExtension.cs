@@ -103,23 +103,13 @@ public static class IServiceCollectionExtension
                 Type = SecuritySchemeType.Http,
                 BearerFormat = "JWT",
 
-                // JWT de type Bearer
+                // nom de la config
                 Scheme = "Bearer"
             });
 
-            swagger.AddSecurityRequirement(new OpenApiSecurityRequirement
+            swagger.AddSecurityRequirement(x => new OpenApiSecurityRequirement
             {
-                {
-                    new OpenApiSecurityScheme
-                    {
-                        Reference = new OpenApiReference
-                        {
-                            Type = ReferenceType.SecurityScheme,
-                            Id = "Bearer"
-                        }
-                    },
-                    new string[]{}
-                }
+                [new OpenApiSecuritySchemeReference("Bearer", x)] = []
             });
 #endif
         });
