@@ -1,38 +1,38 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
 	<GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
 	<ItemGroup Condition="'$(UtiliserFluentValidator)' == 'true'">
-		<PackageReference Include="FluentValidation" Version="12.0.0" />
-		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.0.0" />
+		<PackageReference Include="FluentValidation" Version="12.1.0" />
+		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.0" />
 
 		<Folder Include="Validators\" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Condition="'$(UtiliserMail)' == 'true'" Include="MailKit" Version="4.13.0" />
-		<PackageReference Condition="'$(UtiliserQrCode)' == 'true'" Include="QRCoder" Version="1.6.0" />
+		<PackageReference Condition="'$(UtiliserMail)' == 'true'" Include="MailKit" Version="4.14.1" />
+		<PackageReference Condition="'$(UtiliserQrCode)' == 'true'" Include="QRCoder" Version="1.7.0" />
 		<PackageReference Condition="'$(Utiliser2fa)' == 'true'" Include="TwoFactorAuth.Net" Version="1.4.0" />
-		<PackageReference Condition="'$(UtiliserJWT)' == 'true'" Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.8" />
-		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.8" />
-		<PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.3" />
+		<PackageReference Condition="'$(UtiliserJWT)' == 'true'" Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="10.0.1" />
   </ItemGroup>
 
 	<!-- SqlServer / MySql -->
 	<ItemGroup Condition="'$(TypeBdd)' != 'Aucune'">
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.8" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.8">
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 
 		<PackageReference Condition="'$(TypeBdd)' == 'MySql'" Include="Pomelo.EntityFrameworkCore.MySql" Version="9.0.0" />
-		<PackageReference Condition="'$(TypeBdd)' == 'SqlServer'" Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.8" />
+		<PackageReference Condition="'$(TypeBdd)' == 'SqlServer'" Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
