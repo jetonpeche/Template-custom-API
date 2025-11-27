@@ -1,6 +1,6 @@
 # Template custom API
 
-Template custom pour minimal API .NET 8  
+Template custom pour minimal API .NET 10  
 Génération via le CLI dotnet `Template-custom-API`  
 `dotnet new Template-custom-API --help`
 
