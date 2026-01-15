@@ -11,12 +11,13 @@ public interface IMdpService
     /// <returns>Le mot de passe géneré</returns>
     string Generer(ushort _longueurMdp, bool _contientCaractereSpeciaux = true, int _nbCaractereSpeciaux = 0);
 
-    /// <summary>
-    /// Hash le mdp (SHA 256)
-    /// </summary>
-    /// <param name="_mdp">mdp à hasher</param>
-    /// <returns>Le mdp hashé</returns>
-    string Hasher(string _mdp);
+     /// <summary>
+     /// Hash le mdp (SHA 256)
+     /// </summary>
+     /// <param name="_mdp">mdp à hasher</param>
+     /// <param name="_nbIteration">Définit le nombre de cycles de calcul pour transformer le mot de passe. Plus ce nombre est élevé, plus le hachage est lent, ce qui protège contre les attaques par force brute.</param>
+     /// <returns>Le mdp hashé</returns>
+     string Hasher(string _mdp, int _nbIteration = 600_000);
 
     /// <summary>
     /// Verifie si le mdp et le mdpHasher correspondent
